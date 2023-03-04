@@ -1,0 +1,19 @@
+version: "3"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+      - OUTPUT_FILE_PATH=""
+
+  nats:
+    image: nats:2.9.14-alpine3.17
+    command: nats-server --http_port 8222 --user dummy --pass password
+    ports:
+      - "4222:4222"
+      - "8222:8222"
