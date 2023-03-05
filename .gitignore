@@ -15,4 +15,4 @@
 # vendor/
 
 output/**/*.log
-.DS_Store
+**/.DS_Store
