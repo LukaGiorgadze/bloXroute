@@ -1,8 +1,6 @@
 package consumers
 
 import (
-	"strconv"
-
 	"github.com/LukaGiorgadze/bloXroute/configs"
 	"github.com/LukaGiorgadze/bloXroute/internal/client"
 	"github.com/LukaGiorgadze/bloXroute/internal/store"
@@ -31,12 +29,11 @@ func NewItemAccessHandler(cfg *configs.Config, store store.IStore) *ItemAccessHa
 
 	// Inizialize workers and assign it to the ItemMutateHandler struct,
 	// so it can be used later in handler or consumer.
-	semReadMax, _ := strconv.Atoi(cfg.SemaphoreReadMaxGoroutines)
-	semaphoreReader := workers.NewSemaphoreReader(uint8(semReadMax), workersConfig)
+	semaphoreReader := workers.NewSemaphoreReader(cfg.SemaphoreReadMaxGoroutines, workersConfig)
 
 	// It's recommended to have SemaphoreReaders number capacity in Data channel to not keep
 	// reader goroutines blocked until one FileWriter gouroutine reads the data.
-	fileWriter := workers.NewFileWriter(uint16(semReadMax), workersConfig)
+	fileWriter := workers.NewFileWriter(cfg.SemaphoreReadMaxGoroutines, workersConfig)
 
 	return &ItemAccessHandler{
 		cfg,

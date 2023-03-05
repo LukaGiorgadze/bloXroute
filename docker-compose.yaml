@@ -10,6 +10,7 @@ services:
     environment:
       - NATS_URL=nats://nats:4222
       - OUTPUT_FILE_PATH=""
+      - PPROF=false
 
   nats:
     image: nats:2.9.14-alpine3.17

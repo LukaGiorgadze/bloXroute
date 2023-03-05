@@ -12,7 +12,7 @@ type FileWriter struct {
 	workersConfig *WorkersConfig
 }
 
-func NewFileWriter(buf uint16, cfg *WorkersConfig) *FileWriter {
+func NewFileWriter(buf uint8, cfg *WorkersConfig) *FileWriter {
 	return &FileWriter{
 		// It's recommended to have SemaphoreReaders number capacity in Data channel to not keep
 		// reader goroutines blocked until one FileWriter gouroutine reads the data.

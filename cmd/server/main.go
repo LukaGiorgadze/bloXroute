@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"sync"
 
+	"net/http"
 	_ "net/http/pprof"
 
 	"github.com/LukaGiorgadze/bloXroute/configs"
@@ -78,19 +79,14 @@ func main() {
 	}
 	defer msgClient.Unsubscribe(client.ItemGetSubject)
 
-	// go func() {
-	// 	http.HandleFunc("/debug/pprof/", pprof.Index)
-	// 	http.HandleFunc("/debug/pprof/heap", pprof.Index)
-	// 	http.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
-	// 	http.HandleFunc("/debug/pprof/profile", pprof.Profile)
-	// 	http.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
-	// 	http.HandleFunc("/debug/pprof/trace", pprof.Trace)
-	// 	fmt.Println(http.ListenAndServe("localhost:6060", nil))
-	// }()
-
-	// Wait for interrupt signal and then close the application
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
-	signal.Notify(c, os.Kill)
-	<-c
+	// Run pprof to visualize and analyze profiling data.
+	if cfg.Pprof {
+		log.Fatal(http.ListenAndServe("127.0.0.1:8080", nil))
+	} else {
+		// Wait for interrupt signal and then close the application
+		c := make(chan os.Signal, 1)
+		signal.Notify(c, os.Interrupt)
+		signal.Notify(c, os.Kill)
+		<-c
+	}
 }

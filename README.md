@@ -33,7 +33,7 @@ Alternatively, you can run the server and nats with `docker-compose` and use onl
 1. `go run ./cmd/client add -k "name" -v "Luka"`
 1. `go run ./cmd/client get`
 
-### Example
+#### Example
 1. `go run ./cmd/client add random -n 5`
 1. `go run ./cmd/client delete -k "key_3"`
 1. `go run ./cmd/client get`
@@ -46,7 +46,8 @@ Will return: `(key_1=Value 1),(key_2=Value 2),(key_4=Value 4),(key_5=Value 5)`
 - `NatsUser` - NATS username (default: dummy);
 - `NatsPass` - NATS password (default: password);
 - `SemaphoreReadMaxGoroutines` - Maximum number of goroutines running in parallel to read the data concurrently;
-- `OutputFilePath` - Path of output file (default: ./output/items.log) If no value is assigned ("") data won't be written in the file.
+- `OutputFilePath` - Path of output file (default: ./output/items.log) If no value is assigned ("") data won't be written in the file;
+- `Pprof` - [pprof](https://github.com/google/pprof) is a tool for visualization and analysis of profiling data.
 
 ## Architecture
 
