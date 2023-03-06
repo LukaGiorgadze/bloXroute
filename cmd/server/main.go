@@ -19,7 +19,7 @@ import (
 func main() {
 
 	// NewConfig loads and parses the environment variables into structs.
-	// It uses the default tag to set values, which can be overwritten by setting environment
+	// It uses the default tag to set values, which can be overwritten by setting environment.
 	cfg, err := configs.NewConfig()
 	if err != nil {
 		log.Fatal(err)
@@ -81,7 +81,7 @@ func main() {
 
 	// Run pprof to visualize and analyze profiling data.
 	if cfg.Pprof {
-		log.Fatal(http.ListenAndServe("127.0.0.1:8080", nil))
+		log.Fatal(http.ListenAndServe(cfg.PprofURL, nil))
 	} else {
 		// Wait for interrupt signal and then close the application
 		c := make(chan os.Signal, 1)

@@ -11,7 +11,7 @@ const (
 )
 
 // Once is a struct that represents a single worker that can process one item at a time.
-type Once struct {
+type OnceMutator struct {
 
 	// Queue is a channel that is used to send messages to the worker.
 	Queue chan *models.Msg
@@ -20,8 +20,8 @@ type Once struct {
 	workersConfig *WorkersConfig
 }
 
-func NewOnce(cfg *WorkersConfig) *Once {
-	return &Once{
+func NewOnceMutator(cfg *WorkersConfig) *OnceMutator {
+	return &OnceMutator{
 		Queue:         make(chan *models.Msg, 1),
 		workersConfig: cfg,
 	}
@@ -31,7 +31,7 @@ func NewOnce(cfg *WorkersConfig) *Once {
 // If the subject is ADD_ITEM, it adds the map item to the workersConfig store.
 // If the subject is DELETE_ITEM, it removes the map item from the workersConfig store.
 // The function is designed to run indefinitely, waiting for messages on the Queue channel.
-func (o *Once) MutatorWorker() {
+func (o *OnceMutator) MutatorWorker() {
 	for {
 		item := <-o.Queue
 

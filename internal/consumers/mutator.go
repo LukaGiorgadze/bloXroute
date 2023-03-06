@@ -19,7 +19,7 @@ type ItemMutateHandler struct {
 
 	// Once is a pattern to run mutation worker only once, since we want to keep maintain,
 	// ordering of items added/delete.
-	onceMutator *workers.Once
+	onceMutator *workers.OnceMutator
 }
 
 func NewItemMutateHandler(cfg *configs.Config, store store.IStore) *ItemMutateHandler {
@@ -31,7 +31,7 @@ func NewItemMutateHandler(cfg *configs.Config, store store.IStore) *ItemMutateHa
 
 	// Inizialize worker and assign it to the ItemMutateHandler struct,
 	// so it can be used later in handler or consumer.
-	onceMutator := workers.NewOnce(workersConfig)
+	onceMutator := workers.NewOnceMutator(workersConfig)
 
 	return &ItemMutateHandler{
 		cfg,

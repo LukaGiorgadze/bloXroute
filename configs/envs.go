@@ -7,4 +7,5 @@ type Config struct {
 	SemaphoreReadMaxGoroutines uint8  `env:"SEM_READ_MAX_GR" envDefault:"10"`
 	OutputFilePath             string `env:"OUTPUT_FILE_PATH" envDefault:"./output/items.log"`
 	Pprof                      bool   `env:"PPROF" envDefault:"false"`
+	PprofURL                   string `env:"PPROF_URL" envDefault:"127.0.0.1:8080"`
 }

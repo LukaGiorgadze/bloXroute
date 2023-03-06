@@ -50,7 +50,7 @@ func (c *NatsClient) Publish(subject Subject, data []byte) (err error) {
 }
 
 func (c *NatsClient) Subscribe(subject Subject, handler func(msg *nats.Msg)) (err error) {
-	// The Subscribe method of c.conn runs the provided handler function, which returns a consumer function.
+	// Above Subscribe method of `NatsClient` runs the provided handler function, which returns a consumer function.
 	// Prior to processing messages, the handler may perform some business logic and initialization steps.
 	// The returned consumer function is responsible for consuming messages received from the subscribed subject.
 	sub, err := c.conn.Subscribe(string(subject), handler)

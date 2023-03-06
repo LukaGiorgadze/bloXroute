@@ -6,9 +6,9 @@
 
 This is a multi-threaded client-server Event-Driven Architecture application that allows clients to communicate with a server using an external queue. Clients can be configured either from a command line or from a file and can read data from a command line.
 
-Clients can send requests to the server to add an item, remove an item, get a single item or all items from the data structure. Items are in the form of a string and consist of a key and a value.
+Clients can send requests to the server to add an item, remove an item, get a single item or all items from the server. Items are in the form of a string and consist of a key and a value.
 
-The server has data structure(s) that holds the data in memory while keeping the order of items as they were added. The data structure used is an LinkedList. The get function returns items in the order they were added. If an item is removed, it is no longer returned in get.
+The server has data structure(s) that holds the data in memory while keeping the order of items as they were added. The data structure used is a LinkedList. The get function returns items in the order they were added. If an item is removed, it is no longer returned in get requests.
 
 Clients can be added or removed without interfering with the server or other clients.
 
@@ -18,8 +18,6 @@ _Scroll down to see detailed requiremenets._
 
 Run server and client(s) locally:
 
-1. `cd bloXroute`
-1. `go mod tidy`
 1. `docker-compose up nats`
 1. `go run ./cmd/server`
 1. `go run ./cmd/client add -k "name" -v "Luka"`
@@ -27,8 +25,6 @@ Run server and client(s) locally:
 
 Alternatively, you can run the server and nats with `docker-compose` and use only client on local:
 
-1. `cd bloXroute`
-1. `go mod tidy`
 1. `docker-compose up`
 1. `go run ./cmd/client add -k "name" -v "Luka"`
 1. `go run ./cmd/client get`
@@ -48,6 +44,7 @@ Will return: `(key_1=Value 1),(key_2=Value 2),(key_4=Value 4),(key_5=Value 5)`
 - `SemaphoreReadMaxGoroutines` - Maximum number of goroutines running in parallel to read the data concurrently;
 - `OutputFilePath` - Path of output file (default: ./output/items.log) If no value is assigned ("") data won't be written in the file;
 - `Pprof` - [pprof](https://github.com/google/pprof) is a tool for visualization and analysis of profiling data. (default: false)
+- `PprofURL` -  (default: 127.0.0.1:8080)
 
 ## Architecture
 

@@ -12,6 +12,7 @@ type item struct {
 	prev  *item
 }
 
+// LinkedList
 // The OrderedMap struct holds a head pointer to the first item in the map,
 // a tail pointer to the last item in the map, and a map named "items" that holds pointers
 // to all the items in the map for quick access. It also holds a size value to keep

@@ -67,8 +67,8 @@ func (ih *ItemAccessHandler) consumer() func(msg *nats.Msg) {
 	)
 
 	return func(msg *nats.Msg) {
-		switch msg.Subject {
 
+		switch msg.Subject {
 		case GET_ITEM:
 			m := msgToStruct(msg)
 			ih.semaphoreReader.Acquire()

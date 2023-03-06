@@ -77,4 +77,5 @@ func (s *SemaphoreReader) ReadOne(item *models.Msg, fileWriterCh chan<- string) 
 
 	// Send data to the file writer channel, so FileWriter worker can start it's job.
 	fileWriterCh <- sb.String()
+
 }

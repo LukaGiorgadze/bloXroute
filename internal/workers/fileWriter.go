@@ -7,7 +7,7 @@ import (
 )
 
 type FileWriter struct {
-	// Data received by reader channels
+	// Data receives processed string mesasges from a reader channels.
 	Data          chan string
 	workersConfig *WorkersConfig
 }
