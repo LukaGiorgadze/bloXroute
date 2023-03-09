@@ -51,8 +51,8 @@ func main() {
 	// However, direct access or modification is not recommended without using locks,
 	// as it can lead to race conditions and other synchronization issues.
 	// Therefore, it is advised to use the `unsafeStore.Lock()` method to control access to the store to ensure safe concurrent operations.
-	// var unsafeStore store.IStore = store.NewOrderedMap(&lock, &fileLock, cfg.OutputFilePath)
-	var unsafeStore store.IStore = store.NewLinkedList(&lock, &fileLock, cfg.OutputFilePath)
+	var unsafeStore store.IStore = store.NewOrderedMap(&lock, &fileLock, cfg.OutputFilePath)
+	// var unsafeStore store.IStore = store.NewLinkedList(&lock, &fileLock, cfg.OutputFilePath)
 
 	// The consumers in this application contain handlers, which are the first callbacks in the subscribe method.
 	// These handlers can be used to write additional logic, initialize routines,
